@@ -1,10 +1,19 @@
 <template>
   <div class="home">
+    <v-text-field
+      v-model="newTaskTitle"
+      @click:append="addTask"
+      @keyup.enter="addTask"
+      class="pa-3"
+      outlined
+      label="Add Todo Items"
+      append-icon="mdi-plus"
+      hide-details
+      clearable
+    ></v-text-field>
     <v-list
-      subheader
       flat
     >
-      <v-subheader>Todo</v-subheader>
       <v-divider></v-divider>
       <div
         v-for="task in tasks"
@@ -30,8 +39,11 @@
               </v-list-item-title>
             </v-list-item-content>
           <v-list-item-action>
-          <v-btn icon>
-            <v-icon color="grey lighten-1">mdi-delete</v-icon>
+          <v-btn
+          @click.stop="deleteTask(task.id)" 
+          icon
+          >
+            <v-icon color="primary">mdi-delete</v-icon>
           </v-btn>
           </v-list-item-action>
           </template>
@@ -47,29 +59,42 @@
     name: 'Home',
     data(){
       return {
+        newTaskTitle: '',
         tasks: [
-          {
-            id: 1,
-            title: 'Add Tasks',
-            done: false
-          },
-          {
-            id: 2,
-            title: 'Add Task 1', 
-            done: false
-          },
-          {
-            id: 3,
-            title: 'Add Task 2', 
-            done: false
-          }
+          // {
+          //   id: 1,
+          //   title: 'Add Tasks',
+          //   done: false
+          // },
+          // {
+          //   id: 2,
+          //   title: 'Add Task 1', 
+          //   done: false
+          // },
+          // {
+          //   id: 3,
+          //   title: 'Add Task 2', 
+          //   done: false
+          // }
         ]
       }
     },
     methods: {
+      addTask(){
+        let newTask = {
+          id: Date.now(),
+          title: this.newTaskTitle,
+          done: false
+        }
+        this.tasks.push(newTask)
+        this.newTaskTitle = ''
+      },
       doneTask(id){
         let task = this.tasks.filter(task => task.id === id)[0]
         task.done = !task.done
+      }, 
+      deleteTask(id){
+        this.tasks = this.tasks.filter(task => task.id != id)
       }
     }
   }

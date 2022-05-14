@@ -1,5 +1,7 @@
 # to-do
 
+A Todo app build using Vue and Vuetify based on a [YouTube tutorial](https://www.youtube.com/watch?v=CjXgoYo86yY) by Danny Conell.
+
 ## Project setup
 ```
 npm install

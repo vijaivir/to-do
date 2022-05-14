@@ -44,7 +44,7 @@
     </v-app-bar>
 
     <v-main>
-      <!--  -->
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
@@ -54,9 +54,9 @@
     data: () => ({
       drawer: null,
       items: [
-        { title: 'Dashboard', icon: 'mdi-view-dashboard' },
-        { title: 'Planned', icon: 'mdi-calendar' },
-        { title: 'About', icon: 'mdi-help-box' },
+        { title: 'Todo', icon: 'mdi-view-dashboard', to: '/'},
+        { title: 'Planned', icon: 'mdi-calendar', to: '/planned' },
+        { title: 'About', icon: 'mdi-help-box', to: '/about' },
         ],
       }),
   }
